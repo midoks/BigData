@@ -42,6 +42,12 @@
     [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", debug, nil]] waitUntilExit];
 }
 
+#pragma mark - 显示主界面 -
+- (IBAction)showMain:(id)sender {
+    [NSApp activateIgnoringOtherApps:YES];
+    [self.window makeKeyAndOrderFront:sender];
+}
+
 #pragma mark - 设置状态栏 -
 -(void)setBarStatus
 {
@@ -51,13 +57,5 @@
     statusBarItem.menu = statusBarItemMenu;
     [statusBarItem setHighlightMode:YES];
 }
-
-#pragma mark - 显示主界面 -
-- (IBAction)showMain:(id)sender {
-    [NSApp activateIgnoringOtherApps:YES];
-    [self.window makeKeyAndOrderFront:sender];
-}
-
-
 
 @end
