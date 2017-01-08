@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NSCommon.h"
 
 @interface AppDelegate ()
 
@@ -30,11 +31,16 @@
 - (IBAction)openCellDir:(id)sender
 {
     NSLog(@"dddd");
-//    NSURL *pathstring = [[_serverPath clickedPathComponentCell] URL];
-//    NSString *dir = [[pathstring absoluteString] stringByReplacingOccurrencesOfString:@"file://" withString:@""];
-//    [[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:[NSArray arrayWithObjects:dir, nil]] waitUntilExit];
+    //    NSURL *pathstring = [[_serverPath clickedPathComponentCell] URL];
+    //    NSString *dir = [[pathstring absoluteString] stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+    //    [[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:[NSArray arrayWithObjects:dir, nil]] waitUntilExit];
 }
 
+- (IBAction)bgDebugAction:(id)sender {
+    NSString *rootDir   = [NSCommon getRootDir];
+    NSString *debug = [NSString stringWithFormat:@"%@scripts/debug.sh", rootDir];
+    [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", debug, nil]] waitUntilExit];
+}
 
 #pragma mark - 设置状态栏 -
 -(void)setBarStatus

@@ -108,6 +108,9 @@
                         <items>
                             <menuItem title="DEBUG" keyEquivalent="d" id="21R-RV-jZ8">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="bgDebugAction:" target="Voe-Tx-rLC" id="DJl-nq-NGr"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>
