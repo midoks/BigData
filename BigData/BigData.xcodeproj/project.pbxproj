@@ -24,6 +24,9 @@
 		824BE3511E22736200D82CE5 /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 824BE34D1E22736200D82CE5 /* start@2x.png */; };
 		824BE3521E22736200D82CE5 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 824BE34E1E22736200D82CE5 /* start.png */; };
 		829AAAB71E227C54005EECB9 /* NSCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 829AAAB51E227C54005EECB9 /* NSCommon.m */; };
+		829AAABC1E237C0A005EECB9 /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 829AAABB1E237C0A005EECB9 /* SettingVC.m */; };
+		829AAABE1E2A1250005EECB9 /* common.plist in Resources */ = {isa = PBXBuildFile; fileRef = 829AAABD1E2A1250005EECB9 /* common.plist */; };
+		829AAAC21E2A18A9005EECB9 /* ProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 829AAAC11E2A18A9005EECB9 /* ProjectModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,11 @@
 		824BE34E1E22736200D82CE5 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		829AAAB51E227C54005EECB9 /* NSCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCommon.m; sourceTree = "<group>"; };
 		829AAAB61E227C54005EECB9 /* NSCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCommon.h; sourceTree = "<group>"; };
+		829AAABA1E237C0A005EECB9 /* SettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingVC.h; sourceTree = "<group>"; };
+		829AAABB1E237C0A005EECB9 /* SettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingVC.m; sourceTree = "<group>"; };
+		829AAABD1E2A1250005EECB9 /* common.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = common.plist; sourceTree = "<group>"; };
+		829AAAC01E2A18A9005EECB9 /* ProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectModel.h; sourceTree = "<group>"; };
+		829AAAC11E2A18A9005EECB9 /* ProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,9 +127,12 @@
 		824BE30A1E20A28A00D82CE5 /* BigData */ = {
 			isa = PBXGroup;
 			children = (
+				829AAABF1E2A1883005EECB9 /* Models */,
+				824BE3381E20DF2400D82CE5 /* Resources */,
 				829AAAB51E227C54005EECB9 /* NSCommon.m */,
 				829AAAB61E227C54005EECB9 /* NSCommon.h */,
-				824BE3381E20DF2400D82CE5 /* Resources */,
+				829AAABA1E237C0A005EECB9 /* SettingVC.h */,
+				829AAABB1E237C0A005EECB9 /* SettingVC.m */,
 				824BE30B1E20A28A00D82CE5 /* AppDelegate.h */,
 				824BE30C1E20A28A00D82CE5 /* AppDelegate.m */,
 				824BE3111E20A28A00D82CE5 /* Assets.xcassets */,
@@ -161,6 +172,7 @@
 		824BE3381E20DF2400D82CE5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				829AAABD1E2A1250005EECB9 /* common.plist */,
 				824BE34B1E22736200D82CE5 /* stop@2x.png */,
 				824BE34C1E22736200D82CE5 /* stop.png */,
 				824BE34D1E22736200D82CE5 /* start@2x.png */,
@@ -173,6 +185,15 @@
 				824BE3391E20DF2400D82CE5 /* Icon.icns */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		829AAABF1E2A1883005EECB9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				829AAAC01E2A18A9005EECB9 /* ProjectModel.h */,
+				829AAAC11E2A18A9005EECB9 /* ProjectModel.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +313,7 @@
 				824BE34A1E2272F100D82CE5 /* restart.png in Resources */,
 				824BE3441E224BE700D82CE5 /* docs.png in Resources */,
 				824BE3511E22736200D82CE5 /* start@2x.png in Resources */,
+				829AAABE1E2A1250005EECB9 /* common.plist in Resources */,
 				824BE3121E20A28A00D82CE5 /* Assets.xcassets in Resources */,
 				824BE3151E20A28B00D82CE5 /* MainMenu.xib in Resources */,
 				824BE3521E22736200D82CE5 /* start.png in Resources */,
@@ -321,6 +343,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				824BE3101E20A28A00D82CE5 /* main.m in Sources */,
+				829AAABC1E237C0A005EECB9 /* SettingVC.m in Sources */,
+				829AAAC21E2A18A9005EECB9 /* ProjectModel.m in Sources */,
 				824BE30D1E20A28A00D82CE5 /* AppDelegate.m in Sources */,
 				829AAAB71E227C54005EECB9 /* NSCommon.m in Sources */,
 			);

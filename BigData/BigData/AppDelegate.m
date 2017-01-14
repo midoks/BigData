@@ -16,26 +16,22 @@
 
 @implementation AppDelegate
 
+
+
+
+#pragma mark - 程序加载 start -
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
     [self setBarStatus];
 }
 
-
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     
 }
+#pragma mark - 程序加载 end -
 
 
-#pragma mark NSPathControlDelegate
-- (IBAction)openCellDir:(id)sender
-{
-    NSLog(@"dddd");
-    //    NSURL *pathstring = [[_serverPath clickedPathComponentCell] URL];
-    //    NSString *dir = [[pathstring absoluteString] stringByReplacingOccurrencesOfString:@"file://" withString:@""];
-    //    [[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:[NSArray arrayWithObjects:dir, nil]] waitUntilExit];
-}
-
+#pragma mark - 调试 -
 - (IBAction)bgDebugAction:(id)sender {
     NSString *rootDir   = [NSCommon getRootDir];
     NSString *debug = [NSString stringWithFormat:@"%@scripts/debug.sh", rootDir];

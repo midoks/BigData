@@ -197,6 +197,10 @@
                                                                 </prototypeCellViews>
                                                             </tableColumn>
                                                         </tableColumns>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="2BL-Bd-5TL" id="dhg-FA-tk5"/>
+                                                            <outlet property="delegate" destination="2BL-Bd-5TL" id="Syv-jh-Yyy"/>
+                                                        </connections>
                                                     </tableView>
                                                 </subviews>
                                             </clipView>
@@ -213,15 +217,15 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
-                                        <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rd7-Lh-whD">
+                                        <pathControl autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rd7-Lh-whD">
                                             <rect key="frame" x="151" y="121" width="217" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <pathCell key="cell" controlSize="small" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" baseWritingDirection="leftToRight" alignment="left" id="fkH-OU-HSX">
+                                            <pathCell key="cell" controlSize="small" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" focusRingType="none" baseWritingDirection="leftToRight" alignment="left" id="fkH-OU-HSX">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <url key="url" string="file:///Applications/"/>
                                             </pathCell>
                                             <connections>
-                                                <action selector="openCellDir:" target="Voe-Tx-rLC" id="FvZ-io-4rB"/>
+                                                <action selector="openCellDir:" target="2BL-Bd-5TL" id="6yP-gG-pM3"/>
                                             </connections>
                                         </pathControl>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcX-cr-hWD">
@@ -240,6 +244,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="add:" target="2BL-Bd-5TL" id="WoZ-Hy-js6"/>
+                                            </connections>
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dHu-EX-jVc">
                                             <rect key="frame" x="39" y="5" width="24" height="22"/>
@@ -248,6 +255,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="delete:" target="2BL-Bd-5TL" id="Mi1-Ye-N7B"/>
+                                            </connections>
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7R-f6-ckd">
                                             <rect key="frame" x="62" y="5" width="72" height="22"/>
@@ -264,6 +274,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="openActionFile:" target="2BL-Bd-5TL" id="IsQ-d1-2PH"/>
+                                            </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydL-pe-hLj">
                                             <rect key="frame" x="232" y="141" width="24" height="24"/>
@@ -272,16 +285,19 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="selectDir:" target="2BL-Bd-5TL" id="UnA-ES-rt7"/>
+                                            </connections>
                                         </button>
-                                        <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="74J-8g-QYw">
+                                        <pathControl autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="74J-8g-QYw">
                                             <rect key="frame" x="151" y="66" width="217" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <pathCell key="cell" controlSize="small" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" baseWritingDirection="leftToRight" alignment="left" id="y6Q-xH-vOj">
+                                            <pathCell key="cell" controlSize="small" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" focusRingType="none" baseWritingDirection="leftToRight" alignment="left" id="y6Q-xH-vOj">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <url key="url" string="file:///Applications/"/>
                                             </pathCell>
                                             <connections>
-                                                <action selector="openCellDir:" target="Voe-Tx-rLC" id="3Kw-t6-0TW"/>
+                                                <action selector="openCellDir:" target="2BL-Bd-5TL" id="rT0-mz-YA6"/>
                                             </connections>
                                         </pathControl>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ych-KZ-Ved">
@@ -293,13 +309,16 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-6K-Ml0">
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-6K-Ml0">
                                             <rect key="frame" x="212" y="85" width="24" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="only" alignment="center" alternateImage="NSFollowLinkFreestandingTemplate" imageScaling="proportionallyDown" inset="2" id="ykK-Yn-1S5">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="openActionFile:" target="2BL-Bd-5TL" id="vSV-9P-xlI"/>
+                                            </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fta-9w-Mke">
                                             <rect key="frame" x="232" y="86" width="24" height="24"/>
@@ -309,15 +328,15 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                         </button>
-                                        <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aD0-X6-nID">
+                                        <pathControl autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aD0-X6-nID">
                                             <rect key="frame" x="151" y="9" width="217" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <pathCell key="cell" controlSize="small" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" baseWritingDirection="leftToRight" alignment="left" id="MCt-Sf-T08">
+                                            <pathCell key="cell" controlSize="small" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" focusRingType="none" baseWritingDirection="leftToRight" alignment="left" id="MCt-Sf-T08">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <url key="url" string="file:///Applications/"/>
                                             </pathCell>
                                             <connections>
-                                                <action selector="openCellDir:" target="Voe-Tx-rLC" id="JZn-c9-6YB"/>
+                                                <action selector="openCellDir:" target="2BL-Bd-5TL" id="ctm-pW-s6M"/>
                                             </connections>
                                         </pathControl>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAM-kb-fou">
@@ -329,13 +348,16 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UIT-9e-529">
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="UIT-9e-529">
                                             <rect key="frame" x="212" y="28" width="24" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="only" alignment="center" alternateImage="NSFollowLinkFreestandingTemplate" imageScaling="proportionallyDown" inset="2" id="nkX-Af-bmK">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="openActionFile:" target="2BL-Bd-5TL" id="pXB-Lq-ceW"/>
+                                            </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tzs-mn-GpY">
                                             <rect key="frame" x="232" y="29" width="24" height="24"/>
@@ -410,8 +432,17 @@
                     </tabView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="128.5" y="69.5"/>
+            <point key="canvasLocation" x="132" y="60"/>
         </window>
+        <customObject id="2BL-Bd-5TL" customClass="SettingVC">
+            <connections>
+                <outlet property="_tableView" destination="yRN-Ce-5rd" id="hdP-IY-9yg"/>
+                <outlet property="restartPath" destination="aD0-X6-nID" id="zWl-a0-2rp"/>
+                <outlet property="startPath" destination="Rd7-Lh-whD" id="iu3-jn-lli"/>
+                <outlet property="stopPath" destination="74J-8g-QYw" id="2EJ-5H-Tqf"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="BYf-UO-b4l"/>
+            </connections>
+        </customObject>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
