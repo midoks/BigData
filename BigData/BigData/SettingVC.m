@@ -19,22 +19,22 @@ if (row == -1) { \
 return; \
 }
 
-@interface SettingVC() <NSUserNotificationCenterDelegate>
+@interface SettingVC() <NSUserNotificationCenterDelegate,NSTextFieldDelegate>
 @end
 
 @implementation SettingVC
 
 - (id)init
 {
-    
     if (self = [super init]) {
+        
         [_tableView setGridColor:[NSColor blackColor]];
         [_tableView setRowSizeStyle:NSTableViewRowSizeStyleLarge];
         [_tableView setGridStyleMask:(NSTableViewSolidHorizontalGridLineMask | NSTableViewSolidVerticalGridLineMask)];
         [[_tableView cell] setLineBreakMode:NSLineBreakByTruncatingTail];
         [[_tableView cell] setTruncatesLastVisibleLine:YES];
         [_tableView setColumnAutoresizingStyle:NSTableViewSequentialColumnAutoresizingStyle];
-        [_tableView setUsesAlternatingRowBackgroundColors:NO];
+        [_tableView setUsesAlternatingRowBackgroundColors:YES];
         [_tableView.headerView setHidden:YES];//使用隐藏的效果会出现表头的高度
         
         _tableView.delegate = self;
@@ -56,26 +56,17 @@ return; \
 -(void)reloadListData
 {
     _list = [[NSMutableArray alloc] init];
-    //NSString *rPath = [NSCommon getRootDir];
+    
     NSString *pplist = [[NSBundle mainBundle] pathForResource:@"common" ofType:@"plist"];
     NSMutableDictionary *listContent = [[NSMutableDictionary alloc] initWithContentsOfFile:pplist];
     
     for (NSInteger i=0; i<[listContent count]; i++) {
         NSString *pos = [NSString stringWithFormat:@"%ld", i];
         NSMutableDictionary *t = [listContent objectForKey:pos];
-        
-        //        if ([[t objectForKey:@"hostname"] isEqual:@"localhost"])
-        //        {
-        //            NSString *urlstr = [NSString stringWithFormat:@"%@htdocs/www/", str];
-        //            [[listContent objectForKey:pos] setObject:urlstr forKey:@"path"];
-        //        }
         [_list addObject:t];
     }
     
-    
-    NSLog(@"%@", _list);
     [_tableView reloadData];
-    
 }
 
 -(void)savePlist
@@ -106,6 +97,8 @@ return; \
 }
 
 - (IBAction)openActionFile:(id)sender {
+    judgeSelected();
+    
     NSButton *goBtn = (NSButton *)sender;
     NSString *pathStr = @"";
     
@@ -155,21 +148,14 @@ return; \
     }];
 }
 
-
--(BOOL)tableView:(NSTableView *)tableView shouldEditTableColumn:
-(NSTableColumn *)tableColumn row:(NSInteger)row{
+-(BOOL)tableView:(NSTableView *)tableView shouldSelectTableColumn:(NSTableColumn *)tableColumn
+{
     return YES;
 }
-
--(BOOL)tableView:(NSTableView *)tableView shouldSelectTableColumn:(NSTableColumn *)tableColumn{
-    return YES;
-}
-
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{
     return [_list count];
 }
-
 
 -(NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
@@ -183,7 +169,7 @@ return; \
     return cell;
 }
 
-
+#pragma mark - 选择触动 -
 -(void)tableViewSelectionDidChange:(NSNotification *)notification
 {
     NSInteger row = [_tableView selectedRow];
@@ -197,6 +183,8 @@ return; \
         
         NSString *_restartPath = [NSString stringWithFormat:@"file://%@", [[_list objectAtIndex:row] objectForKey:@"restartPath"]];
         [restartPath setURL:[NSURL URLWithString:_restartPath]];
+        
+        [pName setStringValue:[[_list objectAtIndex:row] objectForKey:@"projectName"]];
     } else {
         NSString *rPath = [NSCommon getRootDir];
         NSString *_startPath    = [NSString stringWithFormat:@"%@scripts/start.sh", rPath];
@@ -207,13 +195,18 @@ return; \
         _restartPath = [NSString stringWithFormat:@"file://%@", _restartPath];
         
         [startPath setURL:[NSURL URLWithString:_startPath]];
-        [stopPath setURL:[NSURL URLWithString:@"file://"]];
-        [restartPath setURL:[NSURL URLWithString:@"file://"]];
+        [stopPath setURL:[NSURL URLWithString:_stopPath]];
+        [restartPath setURL:[NSURL URLWithString:_restartPath]];
+        
+        [pName setStringValue:@"未设置"];
     }
+    
+    [pName setSelectable:YES];
+    [pName setEditable:YES];
 }
 
-#pragma mark - 用户通知 -
 
+#pragma mark - 用户通知 -
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
 {
     return YES;
@@ -233,6 +226,25 @@ return; \
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     [[NSUserNotificationCenter defaultUserNotificationCenter] scheduleNotification:notification];
+}
+
+- (IBAction)modPname:(id)sender
+{
+    judgeSelected();
+
+    if (row > -1) {
+        
+        NSString *pNameValue = pName.stringValue;
+        if ([pNameValue isEqualToString:@""]){
+            [NSCommon alert:@"不能为空" delayedClose:1];
+        } else {
+            [[_list objectAtIndex:row] setObject:pNameValue forKey:@"projectName"];
+            [pName setSelectable:NO];
+        }
+        
+        [self savePlist];
+        [_tableView reloadData];
+    }
 }
 
 #pragma mark - 添加项目 -
@@ -265,8 +277,6 @@ return; \
     NSInteger row = [_tableView selectedRow];
     if (row > -1) {
         
-        NSLog(@"%ld", (long)row);
-        
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:@"删除设置"];
         [alert setInformativeText:@"你是否确认删除有设置路径的配置"];
@@ -295,12 +305,17 @@ return; \
 
 #pragma mark - 启动服务 -
 - (IBAction)start:(id)sender {
+    judgeSelected();
+    
     NSLog(@"%@", @"start");
 }
 
 - (IBAction)reStart:(id)sender {
+    judgeSelected();
+    
     NSLog(@"%@", @"restart");
 }
+
 
 
 @end

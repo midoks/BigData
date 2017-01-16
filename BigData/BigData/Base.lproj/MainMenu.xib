@@ -368,7 +368,7 @@
                                             </buttonCell>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysn-H7-qp8">
-                                            <rect key="frame" x="264" y="174" width="45" height="17"/>
+                                            <rect key="frame" x="310" y="174" width="45" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="restart" id="ys7-uM-pwG">
                                                 <font key="font" metaFont="system"/>
@@ -377,7 +377,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fb6-oU-Zsg">
-                                            <rect key="frame" x="210" y="174" width="33" height="17"/>
+                                            <rect key="frame" x="269" y="174" width="33" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="start" id="qjD-cC-8h1">
                                                 <font key="font" metaFont="system"/>
@@ -386,7 +386,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EK1-Sx-jPe">
-                                            <rect key="frame" x="214" y="194" width="24" height="24"/>
+                                            <rect key="frame" x="273" y="194" width="24" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="start" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="n7c-NR-fQS">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -401,7 +401,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jTc-ue-T4F">
-                                            <rect key="frame" x="270" y="191" width="32" height="30"/>
+                                            <rect key="frame" x="316" y="191" width="32" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="restart" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="rc3-1T-c3h">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -411,6 +411,35 @@
                                                 <action selector="reStart:" target="2BL-Bd-5TL" id="PvZ-xe-APf"/>
                                             </connections>
                                         </button>
+                                        <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="5QY-xo-5W6">
+                                            <rect key="frame" x="144" y="-3" width="5" height="240"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        </box>
+                                        <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="KRt-Bf-mKp">
+                                            <rect key="frame" x="145" y="163" width="217" height="5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        </box>
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEA-Vr-urU">
+                                            <rect key="frame" x="154" y="178" width="81" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" baseWritingDirection="leftToRight" bezelStyle="round" id="5rn-8Q-MBX">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <action selector="modPname:" target="2BL-Bd-5TL" id="UxL-zI-hWd"/>
+                                            </connections>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQW-Nn-qov">
+                                            <rect key="frame" x="153" y="201" width="76" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ProjectName:" id="f6P-ZY-9my">
+                                                <font key="font" metaFont="system" size="10"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -418,11 +447,12 @@
                     </tabView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="132" y="60"/>
+            <point key="canvasLocation" x="131.5" y="59.5"/>
         </window>
         <customObject id="2BL-Bd-5TL" customClass="SettingVC">
             <connections>
                 <outlet property="_tableView" destination="yRN-Ce-5rd" id="hdP-IY-9yg"/>
+                <outlet property="pName" destination="MEA-Vr-urU" id="GeD-dI-QXL"/>
                 <outlet property="restartPath" destination="aD0-X6-nID" id="zWl-a0-2rp"/>
                 <outlet property="startPath" destination="Rd7-Lh-whD" id="iu3-jn-lli"/>
                 <outlet property="stopPath" destination="74J-8g-QYw" id="2EJ-5H-Tqf"/>

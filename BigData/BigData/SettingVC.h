@@ -16,6 +16,11 @@
     IBOutlet NSPathControl *startPath;
     IBOutlet NSPathControl *stopPath;
     IBOutlet NSPathControl *restartPath;
+    
+    IBOutlet NSTextField *pName;
+    
 }
+
+- (IBAction)modPname:(id)sender;
 
 @end
