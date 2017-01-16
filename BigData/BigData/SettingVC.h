@@ -19,6 +19,10 @@
     
     IBOutlet NSTextField *pName;
     
+    
+    IBOutlet NSTextField *startStatus;
+    
+    
 }
 
 - (IBAction)modPname:(id)sender;

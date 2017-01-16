@@ -307,7 +307,24 @@ return; \
 - (IBAction)start:(id)sender {
     judgeSelected();
     
-    NSLog(@"%@", @"start");
+    NSMutableDictionary *list = [_list objectAtIndex:row];
+    if ( [startStatus.stringValue isEqualToString:@"start"] ){
+    
+        
+        NSString *startPathFile = [list objectForKey:@"startPath"];
+        
+        [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", startPathFile, nil]] waitUntilExit];
+        
+        [startStatus setStringValue:@"stop"];
+    } else if ([startStatus.stringValue isEqualToString:@"stop"]) {
+        
+        NSString *startPathFile = [list objectForKey:@"stopPath"];
+        [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", startPathFile, nil]] waitUntilExit];
+        
+        [startStatus setStringValue:@"start"];
+    }
+    
+    
 }
 
 - (IBAction)reStart:(id)sender {

@@ -455,6 +455,7 @@
                 <outlet property="pName" destination="MEA-Vr-urU" id="GeD-dI-QXL"/>
                 <outlet property="restartPath" destination="aD0-X6-nID" id="zWl-a0-2rp"/>
                 <outlet property="startPath" destination="Rd7-Lh-whD" id="iu3-jn-lli"/>
+                <outlet property="startStatus" destination="Fb6-oU-Zsg" id="w6c-8M-VrW"/>
                 <outlet property="stopPath" destination="74J-8g-QYw" id="2EJ-5H-Tqf"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="BYf-UO-b4l"/>
             </connections>
