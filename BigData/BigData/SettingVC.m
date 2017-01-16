@@ -10,6 +10,15 @@
 #import "NSCommon.h"
 #import "ProjectModel.h"
 
+
+# define judgeSelected() \
+NSInteger row = [_tableView selectedRow]; \
+if (row == -1) { \
+[NSCommon alert:@"选择项目" delayedClose:1]; \
+[_tableView selectRowIndexes:[[NSIndexSet alloc] initWithIndex:0] byExtendingSelection:YES]; \
+return; \
+}
+
 @interface SettingVC() <NSUserNotificationCenterDelegate>
 @end
 
@@ -35,9 +44,12 @@
         [self reloadListData];
     }
     
+    [NSCommon delayedRun:0.2 callback:^{
+        if ([_list count] > 0){
+            [_tableView selectRowIndexes:[[NSIndexSet alloc] initWithIndex:0] byExtendingSelection:YES];
+        }
+    }];
     
-    
-    //startPath = [NSString stringWithFormat:@"file://%@", @"/Users/midoks"];
     return  self;
 }
 
@@ -110,8 +122,9 @@
 
 - (IBAction)selectDir:(id)sender {
     
-    [startPath setURL:[NSURL URLWithString:[NSString stringWithFormat:@"file://%@", @"/Users/midoks"]]];
+    judgeSelected();
     
+    NSButton *selectBtn = (NSButton *)sender;
     
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     [panel setPrompt: @"choose"];
@@ -120,15 +133,25 @@
     
     [panel beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSInteger result) {
         
-        //[startPath setURL:[panel URL]];
+        NSString *path = [[[panel URL] absoluteString] stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+        if (selectBtn.tag == 0){
+            [startPath setURL:[panel URL]];
+            [[_list objectAtIndex:row] setObject:path forKey:@"startPath"];
+        } else if (selectBtn.tag == 1) {
+            [stopPath setURL:[panel URL]];
+            [[_list objectAtIndex:row] setObject:path forKey:@"stopPath"];
+        } else if (selectBtn.tag == 2) {
+            [restartPath setURL:[panel URL]];
+            [[_list objectAtIndex:row] setObject:path forKey:@"restartPath"];
+        } else {
+            [restartPath setURL:[panel URL]];
+            [[_list objectAtIndex:row] setObject:path forKey:@"restartPath"];
+        }
         
+        [self savePlist];
+        [_tableView reloadData];
         
-        //
-        //        NSInteger row = [_tableView selectedRow];
-        //        if (row > -1) {
-        //            NSString *path = [[[panel URL] absoluteString] stringByReplacingOccurrencesOfString:@"file://" withString:@""];
-        //            [[_list objectAtIndex:row] setObject:path forKey:@"path"];
-        //        }
+        [_tableView selectRowIndexes:[[NSIndexSet alloc] initWithIndex:row] byExtendingSelection:YES];
     }];
 }
 
@@ -147,9 +170,6 @@
     return [_list count];
 }
 
-//-(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
-//
-//}
 
 -(NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
@@ -161,6 +181,35 @@
     [cell.textField setDrawsBackground:NO];
     
     return cell;
+}
+
+
+-(void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+    NSInteger row = [_tableView selectedRow];
+    if (row > -1) {
+        
+        NSString *_startPath = [NSString stringWithFormat:@"file://%@", [[_list objectAtIndex:row] objectForKey:@"startPath"]];
+        [startPath setURL:[NSURL URLWithString:_startPath]];
+        
+        NSString *_stopPath = [NSString stringWithFormat:@"file://%@", [[_list objectAtIndex:row] objectForKey:@"stopPath"]];
+        [stopPath setURL:[NSURL URLWithString:_stopPath]];
+        
+        NSString *_restartPath = [NSString stringWithFormat:@"file://%@", [[_list objectAtIndex:row] objectForKey:@"restartPath"]];
+        [restartPath setURL:[NSURL URLWithString:_restartPath]];
+    } else {
+        NSString *rPath = [NSCommon getRootDir];
+        NSString *_startPath    = [NSString stringWithFormat:@"%@scripts/start.sh", rPath];
+        _startPath = [NSString stringWithFormat:@"file://%@", _startPath];
+        NSString *_stopPath     = [NSString stringWithFormat:@"%@scripts/stop.sh", rPath];
+        _stopPath = [NSString stringWithFormat:@"file://%@", _stopPath];
+        NSString *_restartPath  = [NSString stringWithFormat:@"%@scripts/restart.sh", rPath];
+        _restartPath = [NSString stringWithFormat:@"file://%@", _restartPath];
+        
+        [startPath setURL:[NSURL URLWithString:_startPath]];
+        [stopPath setURL:[NSURL URLWithString:@"file://"]];
+        [restartPath setURL:[NSURL URLWithString:@"file://"]];
+    }
 }
 
 #pragma mark - 用户通知 -
@@ -189,18 +238,24 @@
 #pragma mark - 添加项目 -
 - (IBAction)add:(id)sender {
     
-    NSString *projectName = [NSString stringWithFormat:@"PN%lu", (unsigned long)[_list count]];
+    NSString *rPath = [NSCommon getRootDir];
+    NSString *projectName   = [NSString stringWithFormat:@"PN%lu", (unsigned long)[_list count]+1];
+    NSString *_startPath    = [NSString stringWithFormat:@"%@scripts/start.sh", rPath];
+    NSString *_stopPath     = [NSString stringWithFormat:@"%@scripts/stop.sh", rPath];
+    NSString *_restartPath  = [NSString stringWithFormat:@"%@scripts/restart.sh", rPath];
+    
     
     [_list addObject:[[ProjectModel alloc]  setWithName:projectName
-                                              startPath:@"start.sh"
-                                               stopPath:@"stop.sh"
-                                            restartPath:@"restart.sh"]];
+                                              startPath:_startPath
+                                               stopPath:_stopPath
+                                            restartPath:_restartPath]];
     
     [self savePlist];
     [_tableView reloadData];
     
     [_tableView selectRowIndexes:[[NSIndexSet alloc] initWithIndex:[_list count]-1] byExtendingSelection:YES];
-    [self userCenter:@"add ok"];
+    NSString *msg = [NSString stringWithFormat:@"添加%@服务成功!", projectName];
+    [self userCenter:msg];
     
 }
 
@@ -208,7 +263,9 @@
 - (IBAction)delete:(id)sender {
     
     NSInteger row = [_tableView selectedRow];
-    if (row != -1) {
+    if (row > -1) {
+        
+        NSLog(@"%ld", (long)row);
         
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:@"删除设置"];
@@ -217,21 +274,33 @@
         [alert addButtonWithTitle:@"取消"];
         [alert setAlertStyle:NSAlertStyleInformational];
         NSModalResponse r = [alert runModal];
-    
+        
         if (r != 1000) {
             return;
         }
         
-        [self savePlist];
-        [_list removeObjectAtIndex:row];
-        [_tableView reloadData];
+        NSString *projectName = [[_list objectAtIndex:row] objectForKey:@"projectName"];
+        NSString *msg = [NSString stringWithFormat:@"删除%@服务成功!", projectName];
         
-        [self userCenter:@"delete"];
+        [_list removeObjectAtIndex:row];
+        [self savePlist];
+        [_tableView reloadData];
+        [self userCenter:msg];
     }
     
     if ([_list count] > 0){
         [_tableView selectRowIndexes:[[NSIndexSet alloc] initWithIndex:0] byExtendingSelection:YES];
     }
 }
+
+#pragma mark - 启动服务 -
+- (IBAction)start:(id)sender {
+    NSLog(@"%@", @"start");
+}
+
+- (IBAction)reStart:(id)sender {
+    NSLog(@"%@", @"restart");
+}
+
 
 @end
