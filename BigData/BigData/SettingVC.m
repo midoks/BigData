@@ -20,12 +20,18 @@ return; \
 }
 
 @interface SettingVC() <NSUserNotificationCenterDelegate,NSTextFieldDelegate>
+
+@property (nonatomic, strong) NSFileManager *fm;
+
 @end
 
 @implementation SettingVC
 
 - (id)init
 {
+    
+    _fm = [NSFileManager defaultManager];
+    
     if (self = [super init]) {
         
         [_tableView setGridColor:[NSColor blackColor]];
@@ -121,30 +127,35 @@ return; \
     
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     [panel setPrompt: @"choose"];
-    [panel setCanChooseDirectories:YES];    //可以打开目录
+    [panel setCanChooseDirectories:NO];    //可以打开目录
     [panel setCanChooseFiles:YES];          //能选择文件
-    
+    //[panel setDirectoryURL:[NSURL URLWithString:@"/Applications"]];
+
     [panel beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSInteger result) {
         
         NSString *path = [[[panel URL] absoluteString] stringByReplacingOccurrencesOfString:@"file://" withString:@""];
-        if (selectBtn.tag == 0){
-            [startPath setURL:[panel URL]];
-            [[_list objectAtIndex:row] setObject:path forKey:@"startPath"];
-        } else if (selectBtn.tag == 1) {
-            [stopPath setURL:[panel URL]];
-            [[_list objectAtIndex:row] setObject:path forKey:@"stopPath"];
-        } else if (selectBtn.tag == 2) {
-            [restartPath setURL:[panel URL]];
-            [[_list objectAtIndex:row] setObject:path forKey:@"restartPath"];
-        } else {
-            [restartPath setURL:[panel URL]];
-            [[_list objectAtIndex:row] setObject:path forKey:@"restartPath"];
+        
+        if (path){
+            if (selectBtn.tag == 0){
+                [startPath setURL:[panel URL]];
+                [[_list objectAtIndex:row] setObject:path forKey:@"startPath"];
+            } else if (selectBtn.tag == 1) {
+                [stopPath setURL:[panel URL]];
+                [[_list objectAtIndex:row] setObject:path forKey:@"stopPath"];
+            } else if (selectBtn.tag == 2) {
+                [restartPath setURL:[panel URL]];
+                [[_list objectAtIndex:row] setObject:path forKey:@"restartPath"];
+            } else {
+                [restartPath setURL:[panel URL]];
+                [[_list objectAtIndex:row] setObject:path forKey:@"restartPath"];
+            }
+            
+            [self savePlist];
+            [_tableView reloadData];
+            
+            [_tableView selectRowIndexes:[[NSIndexSet alloc] initWithIndex:row] byExtendingSelection:YES];
         }
-        
-        [self savePlist];
-        [_tableView reloadData];
-        
-        [_tableView selectRowIndexes:[[NSIndexSet alloc] initWithIndex:row] byExtendingSelection:YES];
+    
     }];
 }
 
@@ -173,20 +184,21 @@ return; \
 -(void)tableViewSelectionDidChange:(NSNotification *)notification
 {
     NSInteger row = [_tableView selectedRow];
+    NSString *rPath = [NSCommon getRootDir];
+    
+    NSMutableDictionary *list = [_list objectAtIndex:row];
+    NSString *projectName = [list objectForKey:@"projectName"];
+    
     if (row > -1) {
         
-        NSString *_startPath = [NSString stringWithFormat:@"file://%@", [[_list objectAtIndex:row] objectForKey:@"startPath"]];
-        [startPath setURL:[NSURL URLWithString:_startPath]];
         
-        NSString *_stopPath = [NSString stringWithFormat:@"file://%@", [[_list objectAtIndex:row] objectForKey:@"stopPath"]];
-        [stopPath setURL:[NSURL URLWithString:_stopPath]];
+        [startPath setURL:[NSURL URLWithString:[NSString stringWithFormat:@"file://%@", [list objectForKey:@"startPath"]]]];
+        [stopPath setURL:[NSURL URLWithString:[NSString stringWithFormat:@"file://%@", [list objectForKey:@"stopPath"]]]];
+        [restartPath setURL:[NSURL URLWithString:[NSString stringWithFormat:@"file://%@", [list objectForKey:@"restartPath"]]]];
         
-        NSString *_restartPath = [NSString stringWithFormat:@"file://%@", [[_list objectAtIndex:row] objectForKey:@"restartPath"]];
-        [restartPath setURL:[NSURL URLWithString:_restartPath]];
-        
-        [pName setStringValue:[[_list objectAtIndex:row] objectForKey:@"projectName"]];
+        [pName setStringValue:[list objectForKey:@"projectName"]];
     } else {
-        NSString *rPath = [NSCommon getRootDir];
+        
         NSString *_startPath    = [NSString stringWithFormat:@"%@scripts/start.sh", rPath];
         _startPath = [NSString stringWithFormat:@"file://%@", _startPath];
         NSString *_stopPath     = [NSString stringWithFormat:@"%@scripts/stop.sh", rPath];
@@ -203,6 +215,20 @@ return; \
     
     [pName setSelectable:YES];
     [pName setEditable:YES];
+    
+    //检查是否启动
+    NSString *pidPos    = [NSString stringWithFormat:@"%@pids/%@.pid", rPath,projectName];
+    
+    if(![_fm fileExistsAtPath:pidPos]){
+        
+        [startStatus setStringValue:@"start"];
+        [startBtn setImage:[NSImage imageNamed:@"start"]];
+        
+    } else {
+    
+        [startStatus setStringValue:@"stop"];
+        [startBtn setImage:[NSImage imageNamed:@"stop"]];
+    }
 }
 
 
@@ -274,7 +300,8 @@ return; \
 #pragma mark - 删除项目 -
 - (IBAction)delete:(id)sender {
     
-    NSInteger row = [_tableView selectedRow];
+    judgeSelected();
+    
     if (row > -1) {
         
         NSAlert *alert = [[NSAlert alloc] init];
@@ -308,6 +335,12 @@ return; \
     judgeSelected();
     
     NSMutableDictionary *list = [_list objectAtIndex:row];
+    NSString *projectName = [list objectForKey:@"projectName"];
+    
+    NSString *rPath = [NSCommon getRootDir];
+    NSString *pidPos    = [NSString stringWithFormat:@"%@pids/%@.pid", rPath,projectName];
+    
+    
     if ( [startStatus.stringValue isEqualToString:@"start"] ){
     
         
@@ -316,23 +349,49 @@ return; \
         [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", startPathFile, nil]] waitUntilExit];
         
         [startStatus setStringValue:@"stop"];
+        [startBtn setImage:[NSImage imageNamed:@"stop"]];
+        [self userCenter:[NSString stringWithFormat:@"启动%@服务成功!", projectName]];
+        
+        
+        NSString *projectNamePid = @"pid";
+        [projectNamePid writeToFile:pidPos atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        
     } else if ([startStatus.stringValue isEqualToString:@"stop"]) {
         
-        NSString *startPathFile = [list objectForKey:@"stopPath"];
-        [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", startPathFile, nil]] waitUntilExit];
+        NSString *stopPathFile = [list objectForKey:@"stopPath"];
+        [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", stopPathFile, nil]] waitUntilExit];
         
         [startStatus setStringValue:@"start"];
+        [startBtn setImage:[NSImage imageNamed:@"start"]];
+        
+        [self userCenter:[NSString stringWithFormat:@"停止%@服务成功!", projectName]];
+        
+        [_fm removeItemAtPath:pidPos error:nil];
     }
-    
     
 }
 
 - (IBAction)reStart:(id)sender {
     judgeSelected();
     
-    NSLog(@"%@", @"restart");
+
+    NSMutableDictionary *list = [_list objectAtIndex:row];
+    NSString *restartPathFile = [list objectForKey:@"restartPath"];
+    NSString *projectName = [list objectForKey:@"projectName"];
+    
+    
+    NSString *rPath = [NSCommon getRootDir];
+    NSString *pidPos    = [NSString stringWithFormat:@"%@pids/%@.pid", rPath,projectName];
+    
+    
+    if(![_fm fileExistsAtPath:pidPos]){
+        [NSCommon alert:[NSString stringWithFormat:@"%@服务未启动!", projectName] delayedClose:3];
+        return;
+    }
+    
+    [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", restartPathFile, nil]] waitUntilExit];
+    
+    [self userCenter:[NSString stringWithFormat:@"重启%@服务成功!", projectName]];
 }
-
-
 
 @end

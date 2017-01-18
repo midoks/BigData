@@ -21,6 +21,7 @@
     
     
     IBOutlet NSTextField *startStatus;
+    IBOutlet NSButton *startBtn;
     
     
 }

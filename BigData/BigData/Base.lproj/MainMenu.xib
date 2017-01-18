@@ -320,13 +320,16 @@
                                                 <action selector="openActionFile:" target="2BL-Bd-5TL" id="vSV-9P-xlI"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fta-9w-Mke">
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Fta-9w-Mke">
                                             <rect key="frame" x="232" y="86" width="24" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="docs" imagePosition="only" alignment="center" alternateImage="docs" imageScaling="proportionallyDown" inset="2" id="5xe-j9-Pse">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="selectDir:" target="2BL-Bd-5TL" id="pZy-hB-X84"/>
+                                            </connections>
                                         </button>
                                         <pathControl autoresizesSubviews="NO" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aD0-X6-nID">
                                             <rect key="frame" x="151" y="9" width="217" height="20"/>
@@ -359,13 +362,16 @@
                                                 <action selector="openActionFile:" target="2BL-Bd-5TL" id="pXB-Lq-ceW"/>
                                             </connections>
                                         </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tzs-mn-GpY">
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="tzs-mn-GpY">
                                             <rect key="frame" x="232" y="29" width="24" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="docs" imagePosition="only" alignment="center" alternateImage="docs" imageScaling="proportionallyDown" inset="2" id="jtg-6t-lAI">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="selectDir:" target="2BL-Bd-5TL" id="oIk-RH-Nqu"/>
+                                            </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysn-H7-qp8">
                                             <rect key="frame" x="310" y="174" width="45" height="17"/>
@@ -397,7 +403,7 @@
                                             </connections>
                                         </button>
                                         <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="0lf-sL-Z5K">
-                                            <rect key="frame" x="146" y="232" width="222" height="203"/>
+                                            <rect key="frame" x="146" y="232" width="222" height="99"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jTc-ue-T4F">
@@ -411,16 +417,8 @@
                                                 <action selector="reStart:" target="2BL-Bd-5TL" id="PvZ-xe-APf"/>
                                             </connections>
                                         </button>
-                                        <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="5QY-xo-5W6">
-                                            <rect key="frame" x="144" y="-3" width="5" height="240"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        </box>
-                                        <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="KRt-Bf-mKp">
-                                            <rect key="frame" x="145" y="163" width="217" height="5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        </box>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEA-Vr-urU">
-                                            <rect key="frame" x="154" y="178" width="81" height="22"/>
+                                            <rect key="frame" x="154" y="178" width="102" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" baseWritingDirection="leftToRight" bezelStyle="round" id="5rn-8Q-MBX">
                                                 <font key="font" metaFont="system"/>
@@ -454,6 +452,7 @@
                 <outlet property="_tableView" destination="yRN-Ce-5rd" id="hdP-IY-9yg"/>
                 <outlet property="pName" destination="MEA-Vr-urU" id="GeD-dI-QXL"/>
                 <outlet property="restartPath" destination="aD0-X6-nID" id="zWl-a0-2rp"/>
+                <outlet property="startBtn" destination="EK1-Sx-jPe" id="Ohj-0t-e3E"/>
                 <outlet property="startPath" destination="Rd7-Lh-whD" id="iu3-jn-lli"/>
                 <outlet property="startStatus" destination="Fb6-oU-Zsg" id="w6c-8M-VrW"/>
                 <outlet property="stopPath" destination="74J-8g-QYw" id="2EJ-5H-Tqf"/>
