@@ -254,22 +254,56 @@ return; \
     [[NSUserNotificationCenter defaultUserNotificationCenter] scheduleNotification:notification];
 }
 
+#pragma mark - 检查项目名是否存在 -
+-(BOOL)checkPName:(NSString *)gpName pos:(NSInteger )pos
+{
+    NSString *cPName = @"";
+    for (int i = 0; i < [_list count]; i++) {
+        cPName = [[_list objectAtIndex:i] objectForKey:@"projectName"];
+        if ( pos != i && [gpName isEqualToString:cPName]){
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (IBAction)modPname:(id)sender
 {
     judgeSelected();
 
     if (row > -1) {
         
-        NSString *pNameValue = pName.stringValue;
+        NSString *pNameValue    = pName.stringValue;
+        NSString *cPname        = [[_list objectAtIndex:row] objectForKey:@"projectName"];
+        
+        NSString *projectNamePid = @"pid";
+        NSString *rPath = [NSCommon getRootDir];
+        NSString *sPidPos    = [NSString stringWithFormat:@"%@pids/%@.pid", rPath,cPname];
+        NSString *dPidPos    = [NSString stringWithFormat:@"%@pids/%@.pid", rPath,pNameValue];
+        
         if ([pNameValue isEqualToString:@""]){
             [NSCommon alert:@"不能为空" delayedClose:1];
         } else {
-            [[_list objectAtIndex:row] setObject:pNameValue forKey:@"projectName"];
+            
+            if ([self checkPName:pName.stringValue pos:row]){
+                [NSCommon alert:@"已经存在同名服务"];
+            } else {
+                
+                if ([_fm fileExistsAtPath:sPidPos]) {
+                    
+                    [_fm removeItemAtPath:sPidPos error:nil];
+                    [projectNamePid writeToFile:dPidPos atomically:YES encoding:NSUTF8StringEncoding error:nil];
+                }
+                
+                [[_list objectAtIndex:row] setObject:pNameValue forKey:@"projectName"];
+            }
+            
             [pName setSelectable:NO];
         }
         
         [self savePlist];
         [_tableView reloadData];
+        [_tableView selectRowIndexes:[[NSIndexSet alloc] initWithIndex:0] byExtendingSelection:YES];
     }
 }
 
