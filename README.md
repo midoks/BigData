@@ -4,4 +4,4 @@
 #空项目下载
 - 1.0安装地址:[1.0](https://pan.baidu.com/s/1mi8Y1T2)
 - 截图
-[![bigdata.png](/Screenshot/bigdata.png)](/Screenshot/bigdata.png)
+ * [![bigdata.png](/Screenshot/bigdata.png)](/Screenshot/bigdata.png)
