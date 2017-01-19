@@ -4,15 +4,19 @@ Solr是一个独立的企业级搜索应用服务器，它对外提供类似于W
 # 相关文档
 - http://www.apache.org/dyn/closer.lua/lucene/solr/6.3.0
 - https://lucene.apache.org/solr/resources.html#tutorials
+- http://dev.mysql.com/downloads/connector/j/
 
 #安装solr准备工作
-* windows -> solr-6.3.0.zip  
+* windows -> solr-6.3.0.zip
 * Unix,Linux,MacOSX -> solr-6.3.0.tgz
 
 # 常用命令
 * bin/solr start
 * bin/solr stop
 * bin/solr restart
+
+# 配置
+
 
 
 
