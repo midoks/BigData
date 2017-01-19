@@ -10,9 +10,9 @@ Solr是一个独立的企业级搜索应用服务器，它对外提供类似于W
 * Unix,Linux,MacOSX -> solr-6.3.0.tgz
 
 # 常用命令
-bin/solr start
-bin/solr stop
-bin/solr restart
+* bin/solr start
+* bin/solr stop
+* bin/solr restart
 
 
 
