@@ -375,10 +375,13 @@ return; \
     NSString *pidPos    = [NSString stringWithFormat:@"%@pids/%@.pid", rPath,projectName];
     
     
-    if ( [startStatus.stringValue isEqualToString:@"start"] ){
+    if ( [startStatus.stringValue isEqualToString:@"start"] && ![_fm fileExistsAtPath:pidPos]){
     
         
         NSString *startPathFile = [list objectForKey:@"startPath"];
+        
+        NSString *projectNamePid = @"pid";
+        [projectNamePid writeToFile:pidPos atomically:YES encoding:NSUTF8StringEncoding error:nil];
         
         [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", startPathFile, nil]] waitUntilExit];
         
@@ -386,11 +389,7 @@ return; \
         [startBtn setImage:[NSImage imageNamed:@"stop"]];
         [self userCenter:[NSString stringWithFormat:@"启动%@服务成功!", projectName]];
         
-        
-        NSString *projectNamePid = @"pid";
-        [projectNamePid writeToFile:pidPos atomically:YES encoding:NSUTF8StringEncoding error:nil];
-        
-    } else if ([startStatus.stringValue isEqualToString:@"stop"]) {
+    } else if ([startStatus.stringValue isEqualToString:@"stop"] && [_fm fileExistsAtPath:pidPos]) {
         
         NSString *stopPathFile = [list objectForKey:@"stopPath"];
         [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", stopPathFile, nil]] waitUntilExit];
