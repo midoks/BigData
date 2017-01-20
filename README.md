@@ -8,3 +8,6 @@
 - 截图
 
 [![bigdata.png](/Screenshot/bigdata.png)](/Screenshot/bigdata.png)
+
+- 项目列表
+ * solr -> [查看文件文档](wiki/solr/wiki.md)

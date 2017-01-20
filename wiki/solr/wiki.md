@@ -7,6 +7,7 @@ Solr是一个独立的企业级搜索应用服务器，它对外提供类似于W
 - http://dev.mysql.com/downloads/connector/j/
 
 #安装solr准备工作
+* JAVA环境安装
 * windows -> solr-6.3.0.zip
 * Unix,Linux,MacOSX -> solr-6.3.0.tgz
 
