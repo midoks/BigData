@@ -59,7 +59,7 @@ Solr是一个独立的企业级搜索应用服务器，它对外提供类似于W
 echo name=mysql_test > core.properties
 ```
 
-- 查看dataimport.properties参数说明[查看文件](wiki/solr/dataimport.properties.md)
+- 查看dataimport.properties参数说明[查看文件](dataimport.properties.md)
 
 - 8小时时差问题(bin/solr.in.sh)
 ```
