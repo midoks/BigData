@@ -9,5 +9,8 @@
 
 [![bigdata.png](/Screenshot/bigdata.png)](/Screenshot/bigdata.png)
 
+#项目下载(带软件)
+- 截图
+
 - 项目列表
  * solr -> [查看文件文档](wiki/solr/wiki.md)

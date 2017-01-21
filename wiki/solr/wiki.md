@@ -5,6 +5,7 @@ Solr是一个独立的企业级搜索应用服务器，它对外提供类似于W
 - http://www.apache.org/dyn/closer.lua/lucene/solr/6.3.0
 - https://lucene.apache.org/solr/resources.html#tutorials
 - http://dev.mysql.com/downloads/connector/j/
+- https://wiki.apache.org/solr/DataImportHandler
 
 #安装solr准备工作
 * JAVA环境安装
@@ -17,6 +18,21 @@ Solr是一个独立的企业级搜索应用服务器，它对外提供类似于W
 * bin/solr restart
 
 # 配置
+- 复制solrconfig.xml文件(server/solr/configsets/basic_configs/conf)
+在
+```
+<requestHandler name="/dataimport" class="solr.DataImportHandler">  
+     <lst name="defaults">  
+        <str name="config">db-data-config.xml</str>  
+     </lst>  
+</requestHandler>
+```
+
+
+#8小时时差问题(bin/solr.in.sh)
+SOLR_TIMEZONE="UTC+8"
+
+
 
 
 
