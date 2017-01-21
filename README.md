@@ -10,7 +10,17 @@
 [![bigdata.png](/Screenshot/bigdata.png)](/Screenshot/bigdata.png)
 
 #项目下载(带软件)
+- 安装地址(每更新一版,看截图)暂未上传
 - 截图
+[![bigdata2.png](/Screenshot/bigdata2.png)](/Screenshot/bigdata2.png)
 
 - 项目列表
  * solr -> [查看文件文档](wiki/solr/wiki.md)
+
+
+
+# NOTE
+- 遇到问题先找到相应项目的日志.
+- 然后百度.
+- 使用时,必须按照JAVA的环境.
+- 软件界面是使用方便管理方式。其精髓,还是自己(macosx shell)操作.
