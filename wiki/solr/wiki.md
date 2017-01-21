@@ -19,7 +19,7 @@ Solr是一个独立的企业级搜索应用服务器，它对外提供类似于W
 
 # 配置
 - 复制solrconfig.xml文件(server/solr/configsets/basic_configs/conf)
-在
+
 ```
 <requestHandler name="/dataimport" class="solr.DataImportHandler">  
      <lst name="defaults">  
@@ -27,11 +27,44 @@ Solr是一个独立的企业级搜索应用服务器，它对外提供类似于W
      </lst>  
 </requestHandler>
 ```
+- 创建(db-data-config.xml)文件
 
+做好带有时间字段
+```
+<dataConfig>
+    <dataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://127.0.0.1:3306/test" user="root" password="root"/>
+    <document>
+    	<!-- 
+			query 				| 获取全部数据的SQL
+			deltaImportQuery 	| 是获取增量数据时使用的SQL 
+			deltaQuery 			| 是获取pk的SQL
+			parentDeltaQuery	| 是获取父Entity的pk的SQL
+    	-->
+    <entity name="test"
+        pk="id"
+        query="select * from test1"
+        deltaImportQuery="select * from test1 where id='${dih.delta.id}'"
+        deltaQuery="select id from test1 where FROM_UNIXTIME(`time`,'%Y-%m-%d %H:%i:%s')>'${dih.last_index_time}'"
+        	>
+            <field column="id" name="id" />
+            <field column="name" name="name" />
+            <field column="value" name="value" />
+    </entity>
+    </document>
+</dataConfig>
+```
 
-#8小时时差问题(bin/solr.in.sh)
+- 创建(core.properties)文件
+```
+echo name=mysql_test > core.properties
+```
+
+- 查看dataimport.properties参数说明[查看文件](wiki/solr/dataimport.properties.md)
+
+- 8小时时差问题(bin/solr.in.sh)
+```
 SOLR_TIMEZONE="UTC+8"
-
+```
 
 
 
