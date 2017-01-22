@@ -18,6 +18,7 @@
 - 项目列表
  * solr -> [查看文件文档](wiki/solr/wiki.md)
  * elk(Elasticsearch,Logstash,Kibana) -> [查看文件文档](wiki/elk/wiki.md)
+ * hadoop -> [查看文件文档](wiki/hadoop/wiki.md)
 
 
 
