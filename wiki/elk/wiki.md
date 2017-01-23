@@ -40,6 +40,21 @@ grunt server(nohop grunt server)
 - http://kibana.logstash.es/content/logstash/scale/redis.html
 
 # 起止命令
+```
+bin/logstash-5.1.2/bin/logstash -f $DIR/bin/logstash-5.1.2/config/logstash.conf &
+
+
+function stop_logstash(){
+
+    logstash=$(ps -ef | grep logstash | sed -n '1,1p' | awk '{print $2}')
+    echo $logstash
+    kill -9 $logstash
+
+}
+
+stop_logstash
+
+```
 
 
 # 插件安装
