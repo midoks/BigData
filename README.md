@@ -10,7 +10,7 @@
 [![bigdata.png](/Screenshot/bigdata.png)](/Screenshot/bigdata.png)
 
 #项目下载(带软件)
-- [安装地址(每更新一版,看截图)](https://pan.baidu.com/s/1slrT2fN)
+- [安装地址(每更新一版,看截图)](https://pan.baidu.com/s/1mi8sHkc)
 - 截图
 
 [![bigdata2.png](/Screenshot/bigdata2.png)](/Screenshot/bigdata2.png)
@@ -19,7 +19,7 @@
  * solr -> [查看文件文档](wiki/solr/wiki.md)
  * elk(Elasticsearch,Logstash,Kibana) -> [查看文件文档](wiki/elk/wiki.md)
  * hadoop -> [查看文件文档](wiki/hadoop/wiki.md)
-
+ * openresty -> [查看文件文档](wiki/openresty/wiki.md)
 
 
 # NOTE
