@@ -10,7 +10,7 @@
 [![bigdata.png](/Screenshot/bigdata.png)](/Screenshot/bigdata.png)
 
 #项目下载(带软件)
-- [安装地址(每更新一版,看截图)](https://pan.baidu.com/s/1mi8sHkc)
+- [安装地址(每更新一版,看截图)](https://pan.baidu.com/s/1mhH6bsG)
 - 截图
 
 [![bigdata2.png](/Screenshot/bigdata2.png)](/Screenshot/bigdata2.png)
