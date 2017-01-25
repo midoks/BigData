@@ -59,6 +59,7 @@ stop_logstash
 
 # 插件安装
 ```
+
 bin/logstash-plugin list
 
 bin/logstash-plugin install logstash-input-kafka
@@ -69,6 +70,12 @@ bin/logstash-plugin install logstash-output-elasticsearch
 
 bin/logstash-plugin install logstash-input-redis
 bin/logstash-plugin install logstash-output-redis
+```
+
+# ruby 相关安装
+```
+sudo gem install bundler
+bundle exec rspec
 ```
 
 
