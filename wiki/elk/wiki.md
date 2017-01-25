@@ -105,4 +105,10 @@ function stop_kafka(){
 stop_kafka
 ```
 
+# 其他命令
+logstash --help --可以通过此命令看到所有命令
+-f, --path.config －－配置文件路径
+-e, --config.string －－可直接运行的配置字符串
+-w, --pipeline.workers --处理线程数
+-b, --pipeline.batch.size －－每个线程每次处理的大小
 
