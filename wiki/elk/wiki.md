@@ -65,6 +65,10 @@ bin/logstash-plugin list
 bin/logstash-plugin install logstash-input-kafka
 bin/logstash-plugin install logstash-output-kafka
 
+#不验证安装
+bin/logstash-plugin install --no-verify logstash-input-kafka
+bin/logstash-plugin install --no-verify logstash-output-kafka
+
 bin/logstash-plugin install logstash-input-elasticsearch
 bin/logstash-plugin install logstash-output-elasticsearch
 
@@ -76,6 +80,7 @@ bin/logstash-plugin install logstash-output-redis
 ```
 sudo gem install bundler
 bundle exec rspec
+bundle update json
 ```
 
 
