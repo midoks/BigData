@@ -10,17 +10,20 @@
 [![bigdata.png](/Screenshot/bigdata.png)](/Screenshot/bigdata.png)
 
 #项目下载(带软件)
-- [安装地址(每更新一版,看截图)](https://pan.baidu.com/s/1mhH6bsG)
+- [安装地址(每更新一版,看截图)](https://pan.baidu.com/s/1jHMuwp4)
 - 截图
 
 [![bigdata2.png](/Screenshot/bigdata2.png)](/Screenshot/bigdata2.png)
+
+- 需要
+ * npm install -g grunt-cli
+ * java 环境
 
 - 项目列表
  * solr -> [查看文件文档](wiki/solr/wiki.md)
  * elk(Elasticsearch,Logstash,Kibana) -> [查看文件文档](wiki/elk/wiki.md)
  * hadoop -> [查看文件文档](wiki/hadoop/wiki.md)
  * openresty -> [查看文件文档](wiki/openresty/wiki.md)
-
 
 # NOTE
 - 遇到问题先找到相应项目的日志,然后Google,百度.
