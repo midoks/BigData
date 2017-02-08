@@ -88,6 +88,8 @@ echo name=mysql_test > core.properties
 SOLR_TIMEZONE="UTC+8"
 ```
 
+- solr集群搭建([查看文档](wiki_solr_cloud.md))
+
 
 
 
