@@ -13,15 +13,17 @@
 
 - 将solr压缩包中solr-6.3.0中server/resources/log4j.properties复制到Tomcat/webapps/solr/WEB-INF/classes 目录中（如果没有classes则创建
 
-- 将solr压缩包中solr-6.3.0中server/solr目录复制到计算机某个目录下，如/Users/midoks/Desktop/solr_cloud/solr
+- 将solr压缩包中solr-6.3.0中server/solr目录复制到计算机某个目录下,如/Users/midoks/Desktop/solr_cloud/solr
 
-- 打开Tomcat/webapps/solr/WEB-INF下的web.xml，找到如下配置内容（初始状态下该内容是被注释掉的）：
+- 打开Tomcat/webapps/solr/WEB-INF下的web.xml，找到如下配置内容(初始状态下该内容是被注释掉的)
+```
 <env-entry>
        <env-entry-name>solr_home</env-entry-name>
        <env-entry-value>/put/your/solr/home/here</env-entry-value>
        <env-entry-type>java.lang.String</env-entry-type>
 </env-entry>
 将<env-entry-value>中的内容改成你的solr/home路径，这里是/Users/midoks/Desktop/solr_cloud/solr
+```
 
 - 打开Tomcat/webapps/solr/WEB-INF下的web.xml修改项目欢迎页面
 ```
