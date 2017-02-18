@@ -18,14 +18,14 @@
 - 打开Tomcat/webapps/solr/WEB-INF下的web.xml，找到如下配置内容(初始状态下该内容是被注释掉的)
 ```
 <env-entry>
-       <env-entry-name>solr_home</env-entry-name>
+       <env-entry-name>solr/home</env-entry-name>
        <env-entry-value>/put/your/solr/home/here</env-entry-value>
        <env-entry-type>java.lang.String</env-entry-type>
 </env-entry>
-将<env-entry-value>中的内容改成你的solr/home路径，这里是/Users/midoks/Desktop/solr_cloud/solr
+将<env-entry-value>中的内容改成你的solr/home路径,这里是/Users/midoks/Desktop/solr_cloud/solr
 ```
 
-- 打开Tomcat/webapps/solr/WEB-INF下的web.xml修改项目欢迎页面
+- 打开Tomcat/webapps/solr/WEB-INF下的web.xml修改项目欢迎页面.
 ```
 <welcome-file-list>
 <welcome-file>./index.html</welcome-file>
@@ -35,6 +35,11 @@
 - 还需要添加solr-dataimporthandler-solr-6.3.0.jar和solr-dataimporthandler-extras-solr-6.3.0.jar这2个jar包到目录tomcat/webapps/solr/WEB-INF/lib/下,否则会报错,这2个包默认不在webapp里,在下载包的dist目录下.
 
 - 保存关闭，而后启动tomcat，在浏览器输入http://localhost:8080/solr即可出现Solr的管理界面
+
+- 添加Core
+```
+在solr_home目录下创建core_1（可自定义），在core_1目录下创建data目录，并将solr_home/configsets/basic_configs/目录下的conf目录复制到core_1下,通过控制台添加core，并重新启动Tomcat,就会看到新建的core_1了.
+```
 
 
 # Solr集群搭建
