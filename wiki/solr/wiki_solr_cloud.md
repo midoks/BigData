@@ -24,9 +24,11 @@
 将<env-entry-value>中的内容改成你的solr/home路径，这里是/Users/midoks/Desktop/solr_cloud/solr
 
 - 打开Tomcat/webapps/solr/WEB-INF下的web.xml修改项目欢迎页面
+```
 <welcome-file-list>
 <welcome-file>./index.html</welcome-file>
 </welcome-file-list>
+```
 
 - 还需要添加solr-dataimporthandler-solr-6.3.0.jar和solr-dataimporthandler-extras-solr-6.3.0.jar这2个jar包到目录tomcat/webapps/solr/WEB-INF/lib/下,否则会报错,这2个包默认不在webapp里,在下载包的dist目录下.
 
