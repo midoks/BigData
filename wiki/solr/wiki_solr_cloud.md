@@ -28,7 +28,7 @@
 <welcome-file>./index.html</welcome-file>
 </welcome-file-list>
 
-- 还需要添加solr-dataimporthandler-5.4.0.jar和solr-dataimporthandler-extras-5.4.0.jar这2个jar包到目录tomcat/webapps/solr/WEB-INF/lib/下,否则会报错,这2个包默认不在webapp里,在下载包的dist目录下.
+- 还需要添加solr-dataimporthandler-solr-6.3.0.jar和solr-dataimporthandler-extras-solr-6.3.0.jar这2个jar包到目录tomcat/webapps/solr/WEB-INF/lib/下,否则会报错,这2个包默认不在webapp里,在下载包的dist目录下.
 
 - 保存关闭，而后启动tomcat，在浏览器输入http://localhost:8080/solr即可出现Solr的管理界面
 
