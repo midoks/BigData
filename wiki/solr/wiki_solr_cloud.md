@@ -6,10 +6,15 @@
 
 # 方法步骤
 - 解压Tomcat到一个目录,例如/Users/midoks/Desktop/solr_cloud/apache-tomcat-7.0.75
+
 - 将solr压缩包中solr-6.3.0中的server/solr-webapp/文件夹下有个webapp文件夹,将之复制到Tomcat/webapps/目录下,并改成solr(名字随意)
+
 - 将solr压缩包中solr-6.3.0中server/lib/ext中的jar全部复制到Tomcat/webapps/solr/WEB-INF/lib目录中
+
 - 将solr压缩包中solr-6.3.0中server/resources/log4j.properties复制到Tomcat/webapps/solr/WEB-INF/classes 目录中（如果没有classes则创建
+
 - 将solr压缩包中solr-6.3.0中server/solr目录复制到计算机某个目录下，如/Users/midoks/Desktop/solr_cloud/solr
+
 - 打开Tomcat/webapps/solr/WEB-INF下的web.xml，找到如下配置内容（初始状态下该内容是被注释掉的）：
 <env-entry>
        <env-entry-name>solr_home</env-entry-name>
