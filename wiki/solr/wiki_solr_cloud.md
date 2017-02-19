@@ -5,7 +5,7 @@
 
 
 # 方法步骤
-- 解压Tomcat到一个目录,例如/Users/midoks/Desktop/solr_cloud/apache-tomcat-7.0.75
+- 解压Tomcat到一个目录,例如/Users/midoks/Desktop/solr_cloud/apache-tomcat-8.5.9
 
 - 将solr压缩包中solr-6.3.0中的server/solr-webapp/文件夹下有个webapp文件夹,将之复制到Tomcat/webapps/目录下,并改成solr(名字随意)
 
@@ -41,6 +41,7 @@
 在solr_home目录下创建core_1（可自定义），在core_1目录下创建data目录，并将solr_home/configsets/basic_configs/目录下的conf目录复制到core_1下,通过控制台添加core，并重新启动Tomcat,就会看到新建的core_1了.
 ```
 
+- http://localhost:8080/solr/index.html
 
 # Solr集群搭建
 
