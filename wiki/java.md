@@ -1,16 +1,16 @@
 # JAVA环境安装
-
 ```
 http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.tar.gz 
 http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm
 ```
 
-
 # 安装过程
 
 - 下载jdk8
 ```
-登录网址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html选择对应jdk版本下载。（Tips：可在Windows下载完成后，通过FTP或者SSH到发送到Linux上）
+登录网址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+选择对应jdk版本下载。
+(Tips：可在Windows下载完成后，通过FTP或者SSH到发送到Linux上)
 ```
 - 登录Linux，切换到root用户
 ```
@@ -29,8 +29,9 @@ mkdir java
 cp /mnt/hgfs/linux/jdk-8u60-linux-x64.tar.gz /usr/java/
 ```
 
-- 解压jdk到当前目录,得到文件夹 jdk1.8.0_*(注意：下载不同版本的JDK目录名不同！)
+- 解压jdk到当前目录,得到文件夹 jdk1.8.0_*
 ```
+(注意：下载不同版本的JDK目录名不同！)
 tar -zxvf jdk-8u60-linux-x64.tar.gz
 ```
 
