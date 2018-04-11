@@ -389,7 +389,7 @@ return; \
         [startBtn setImage:[NSImage imageNamed:@"stop"]];
         [self userCenter:[NSString stringWithFormat:@"启动%@服务成功!", projectName]];
         
-    } else if ([startStatus.stringValue isEqualToString:@"stop"] && [_fm fileExistsAtPath:pidPos]) {
+    } else if ([startStatus.stringValue isEqualToString:@"stop"] ) {
         
         NSString *stopPathFile = [list objectForKey:@"stopPath"];
         [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"-c", stopPathFile, nil]] waitUntilExit];
